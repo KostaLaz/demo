@@ -34,13 +34,13 @@ public class PersonDataAccsessService implements PersonDao {
     }
 
     @Override
-    public int deletePersonById(UUID id) {
+    public boolean deletePersonById(UUID id) {
        Optional<Person> personMaybe =  selectPersonById(id);
         if(personMaybe.isEmpty()){
-            return 0;
+            return false;
         }
         db.remove(personMaybe.get());
-        return 1;
+        return true;
     }
 
     @Override
